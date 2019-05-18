@@ -16,8 +16,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class DataImporter {
-    private static final Logger logger = LoggerFactory.getLogger(DataImporter.class);
+public class Config {
+    private static final Logger logger = LoggerFactory.getLogger(Config.class);
 
     static class MoviesWrapper {
         List<Movie> movies;
@@ -34,23 +34,28 @@ public class DataImporter {
     }
 
     @Bean
-    CommandLineRunner dataInit(MovieService movieService) {
+    public ObjectMapper jsonMapper() {
+        return new ObjectMapper();
+    }
+
+    @Bean
+    CommandLineRunner dataInit(MovieService movieService, ObjectMapper jsonMapper) {
         return args -> {
-            ObjectMapper mapper = new ObjectMapper();
             TypeReference<MoviesWrapper> typeRef = new TypeReference<MoviesWrapper>() {
             };
             InputStream input = TypeReference.class.getResourceAsStream("/json/movies.json");
 
             try {
-                List<Movie> movies = ((MoviesWrapper) mapper.readValue(input, typeRef)).getMovies();
+                List<Movie> movies = ((MoviesWrapper) jsonMapper.readValue(input, typeRef)).getMovies();
 
                 movieService.save(movies);
                 logger.info("{} movies loaded into database", movies.size());
             }
             catch (IOException e) {
                 logger.error("Failed to import movies from 'movies.json' into database", e);
+                throw e;
             }
-
         };
     }
+
 }

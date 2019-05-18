@@ -1,25 +1,16 @@
 package ch.dev.exercise.moviedb.controller;
 
-import ch.dev.exercise.moviedb.service.MovieService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-@Controller
-public class MovieDbController {
-    private MovieService movieService;
-
-    @Autowired
-    public MovieDbController(final MovieService movieService) {
-        this.movieService = movieService;
-    }
-
-
+public interface MovieDbController {
     @GetMapping("/")
-    public String indexPage(Model model) {
-        model.addAttribute("movies", movieService.list());
+    String indexPage();
 
-        return "index";
-    }
+    @GetMapping("/movies")
+    String moviesPage(Model model);
+
+    @GetMapping("/movie/{id}/comments")
+    String commentsPage(@PathVariable("id") Long id, Model model);
 }

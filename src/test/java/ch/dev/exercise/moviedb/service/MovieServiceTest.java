@@ -21,7 +21,7 @@ public class MovieServiceTest {
 
     @Before
     public void setUp() {
-        testService = new MovieService(repository);
+        testService = new MovieServiceImpl(repository);
     }
 
     @Test
@@ -38,5 +38,12 @@ public class MovieServiceTest {
         testService.save(movies);
 
         verify(repository).saveAll(movies);
+    }
+
+    @Test
+    public void getById() {
+        testService.findById(3L);
+
+        verify(repository).getByMovieId(3L);
     }
 }

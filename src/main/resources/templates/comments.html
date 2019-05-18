@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title th:text="|Comments for ${movie.title}|">Comments for Movie</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h4>User comments for</h4>
+<h3 class="movie-title" th:text="${movie.title}">movie</h3>
+<div th:object="${movie}">
+    <table class="comment">
+        <tbody th:if="${not #lists.isEmpty(movie.comments)}">
+        <tr>
+            <th>User</th>
+            <th>Comment</th>
+            <th>At</th>
+            <th>Rating</th>
+        </tr>
+        <tr th:each="comment : *{comments}">
+            <td th:text="${comment.user}">user</td>
+            <td th:text="${comment.message}">message</td>
+            <td th:text="${#temporals.format(comment.createdAt, 'dd MMM yyyy, HH:mm:ss')}">createdAt</td>
+            <td th:text="${comment.like}">like</td>
+        </tr>
+        </tbody>
+        <tbody th:if="${#lists.isEmpty(movie.comments)}">
+        <tr class="comment">
+            <td colspan="8">No comments found</td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>

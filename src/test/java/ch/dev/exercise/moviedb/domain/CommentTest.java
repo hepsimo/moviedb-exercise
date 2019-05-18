@@ -3,6 +3,7 @@ package ch.dev.exercise.moviedb.domain;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.time.Instant;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
 import org.junit.Before;
@@ -36,6 +37,15 @@ public class CommentTest {
     public void setDateCreated() {
         testComment.setDateCreated(123_456_789L);
         assertThat(testComment.getDateCreated(), is(123_456_789L));
+    }
+
+    @Test
+    public void getCreatedAt() {
+        Instant expected = Instant.ofEpochSecond(3000L);
+
+        testComment.setDateCreated(3000L);
+
+        assertThat(testComment.getCreatedAt(), is(expected));
     }
 
     @Test

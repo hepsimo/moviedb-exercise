@@ -74,7 +74,6 @@ public class CommentTest {
     public void jsonRepresentation() throws JsonProcessingException {
         final String json = new ObjectMapper().writeValueAsString(testComment);
         assertThat(json, stringContainsInOrder("user", "message", "dateCreated", "like"));
-        assertThat(json, not(containsString("createdAt")));
     }
 
 }

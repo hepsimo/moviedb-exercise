@@ -14,11 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.server.ResponseStatusException;
 
 @Controller
-public class MovieDbControllerImpl implements MovieDbController {
+public class MovieDbWebControllerImpl implements MovieDbWebController {
     private MovieService movieService;
 
     @Autowired
-    public MovieDbControllerImpl(final MovieService movieService) {
+    public MovieDbWebControllerImpl(final MovieService movieService) {
         this.movieService = movieService;
     }
 

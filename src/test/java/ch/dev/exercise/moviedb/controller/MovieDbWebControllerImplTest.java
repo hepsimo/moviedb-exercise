@@ -23,8 +23,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.server.ResponseStatusException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class MovieDbControllerImplTest {
-    private MovieDbController testController;
+public class MovieDbWebControllerImplTest {
+    private MovieDbWebController testController;
 
     @Mock
     private Model model;
@@ -33,7 +33,7 @@ public class MovieDbControllerImplTest {
 
     @Before
     public void setUp() {
-        testController = new MovieDbControllerImpl(movieService);
+        testController = new MovieDbWebControllerImpl(movieService);
     }
 
     @Test

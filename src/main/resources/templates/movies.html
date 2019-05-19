@@ -29,7 +29,7 @@
             <td th:text="${movie.availableIn3d} ? 'Yes' : 'No'">availableIn3d</td>
             <td th:text="${movie.ageRating}">ageRating</td>
             <td th:text="${movie.likes}">likes</td>
-            <td><a th:href="@{'/movie/' + ${movie.movieId} + '/comments'}">View</a></td>
+            <td><a th:href="@{'/movie/' + ${movie.movieId} + '/comments'}" th:text="${#lists.size(movie.comments)}">View</a></td>
         </tr>
         </tbody>
         <tbody th:if="${#lists.isEmpty(movies)}">

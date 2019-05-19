@@ -1,6 +1,6 @@
 package ch.dev.exercise.moviedb.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,8 @@ public final class Comment {
     @JsonProperty("like")
     private int like;
 
-    @JsonIgnore
+    @JsonProperty("createdAt")
+    @JsonFormat(pattern = "dd MMM yyyy, HH:mm:ss", timezone = "UTC")
     public Instant getCreatedAt() {
         return Instant.ofEpochSecond(dateCreated);
     }

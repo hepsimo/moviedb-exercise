@@ -16,4 +16,7 @@ public interface MovieDbController {
 
     @GetMapping("/top-user")
     String topUserPage(Model model);
+
+    @GetMapping("/top-movie")
+    String topMoviePage(Model model);
 }

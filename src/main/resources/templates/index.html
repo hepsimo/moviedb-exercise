@@ -4,15 +4,26 @@
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
     <title>MovieDB Exercise</title>
 
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <h2>Movies Database</h2>
 <div>
-    <a th:href="@{/movies}">Movies List</a>
-</div>
-<div>
-    <a th:href="@{/top-user}">Top User</a>
+    <table>
+        <tbody>
+        <tr>
+            <th>></th>
+            <th>All Movies</th>
+            <th>Commenters</th>
+            <th>Ratings</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a th:href="@{/movies}">Movies List</a></td>
+            <td><a th:href="@{/top-user}">Top User</a></td>
+            <td><a th:href="@{/top-movie}">Top Movie</a></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

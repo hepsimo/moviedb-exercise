@@ -56,6 +56,13 @@ tr:first-child th:last-child {
 border-radius: 0 5px 0 0;
 }
 
+table.movie tr td:nth-child(2), table.comment tr th:nth-child(2) {
+font-style: italic;
+font-size: 14px;
+padding-right: 10px;
+width: 15%;
+}
+
 table.comment tr td:nth-child(2), table.comment tr th:nth-child(2) {
 font-style: italic;
 font-weight: bold;
@@ -77,18 +84,18 @@ padding-right: 10px;
 width: 5%;
 }
 
-table.top-users {
+table.top {
     width: 10%;
 }
 
-table.top-users tr td:nth-child(2), table.top-users tr th:nth-child(2) {
+table.top tr td:nth-child(2), table.top tr th:nth-child(2) {
 text-align: left;
 font-style: italic;
 padding-right: 10px;
 width: 15%;
 }
 
-table.top-users tr td:last-child, table.top-users tr th:last-child {
+table.top tr td:last-child, table.top tr th:last-child {
 font-weight: bold;
 text-align: right;
 padding-right: 10px;

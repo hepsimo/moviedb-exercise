@@ -2,28 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
-    <title>Top User</title>
+    <title>Top Movie</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-<h2>Top User</h2>
+<h2>Top Movie</h2>
 <div>
     <table class="top">
-        <tbody th:unless="${topUser == null}">
+        <tbody th:unless="${topMovie == null}">
         <tr>
             <th>></th>
-            <th>User</th>
-            <th>Comments total</th>
+            <th>Movie</th>
+            <th>Like total</th>
         </tr>
             <td></td>
-            <td th:text="${topUser.user}">user</td>
-            <td th:text="${topUser.totalComments}">totalComments</td>
+            <td th:text="${topMovie.title}">title</td>
+            <td th:text="${topMovie.totalLike}">totalLike</td>
         </tr>
         </tbody>
-        <tbody th:if="${topUser == null}">
+        <tbody th:if="${topMovie == null}">
         <tr>
-            <td colspan="8">No user comments found</td>
+            <td colspan="8">No user likes found</td>
         </tr>
         </tbody>
     </table>

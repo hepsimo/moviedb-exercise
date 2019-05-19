@@ -8,6 +8,7 @@ import static org.mockito.Mockito.when;
 import ch.dev.exercise.moviedb.domain.Comment;
 import ch.dev.exercise.moviedb.domain.Movie;
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
+import ch.dev.exercise.moviedb.domain.TotalLikePerMovie;
 import ch.dev.exercise.moviedb.service.MovieService;
 import java.util.Collections;
 import java.util.List;
@@ -92,6 +93,18 @@ public class MovieDbControllerImplTest {
 
         assertThat(uri, is("top-user"));
         verify(model).addAttribute("topUser", expected);
+    }
+
+    @Test
+    public void topMoviePage() {
+        final TotalLikePerMovie expected = new TotalLikePerMovie();
+
+        when(movieService.findTopMovie()).thenReturn(expected);
+
+        String uri = testController.topMoviePage(model);
+
+        assertThat(uri, is("top-movie"));
+        verify(model).addAttribute("topMovie", expected);
     }
 
 

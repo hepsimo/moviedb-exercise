@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import ch.dev.exercise.moviedb.MoviedbApplication;
 import ch.dev.exercise.moviedb.domain.Movie;
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
+import ch.dev.exercise.moviedb.domain.TotalLikePerMovie;
 import ch.dev.exercise.moviedb.service.MovieService;
 import java.util.List;
 import org.junit.Test;
@@ -46,5 +47,12 @@ public class MovieRepositoryImplIT {
         final TotalCommentsPerUser topUser = movieService.findTopUser();
 
         assertThat(topUser, is(new TotalCommentsPerUser(4L, "testingPriest")));
+    }
+
+    @Test
+    public void findTopMovieByLike() {
+        final TotalLikePerMovie topMovie = movieService.findTopMovie();
+
+        assertThat(topMovie, is(new TotalLikePerMovie(25L, "Jaws")));
     }
 }

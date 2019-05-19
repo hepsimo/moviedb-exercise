@@ -1,12 +1,16 @@
 package ch.dev.exercise.moviedb.repository;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.group;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sortByCount;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
+import ch.dev.exercise.moviedb.domain.TotalLikePerMovie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
@@ -27,6 +31,19 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
 
         AggregationResults<TotalCommentsPerUser> results =
             template.aggregate(aggregation, "movies", TotalCommentsPerUser.class);
+
+        return results.getUniqueMappedResult();
+    }
+
+    @Override
+    public TotalLikePerMovie findTopMovieByLike() {
+        Aggregation aggregation = Aggregation
+            .newAggregation(unwind("comments"), group("title").sum("$comments.like").as("totalLike"),
+                project().and("_id").as("title").and("totalLike").as("totalLike"), sort(Sort.Direction.DESC, "totalLike"),
+                limit(1));
+
+        AggregationResults<TotalLikePerMovie> results =
+            template.aggregate(aggregation, "movies", TotalLikePerMovie.class);
 
         return results.getUniqueMappedResult();
     }

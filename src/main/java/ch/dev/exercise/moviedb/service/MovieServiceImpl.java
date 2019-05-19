@@ -2,6 +2,7 @@ package ch.dev.exercise.moviedb.service;
 
 import ch.dev.exercise.moviedb.domain.Movie;
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
+import ch.dev.exercise.moviedb.domain.TotalLikePerMovie;
 import ch.dev.exercise.moviedb.repository.MovieRepository;
 import java.util.List;
 import java.util.Optional;
@@ -33,5 +34,10 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public TotalCommentsPerUser findTopUser() {
         return repo.findTopUserByComments();
+    }
+
+    @Override
+    public TotalLikePerMovie findTopMovie() {
+        return repo.findTopMovieByLike();
     }
 }

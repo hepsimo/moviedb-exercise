@@ -1,13 +1,13 @@
 # moviedb-exercise
-####Tech exercise: RESTful Web application
-####Senior Software Developer, Companies House, May 2019
-###Simon Boyd
+#### Tech exercise: RESTful Web application
+#### Senior Software Developer, Companies House, May 2019
+### Simon Boyd
 
-#Welcome
+# Welcome
 
 Welcome to this brief description of my submission for the technical exercise.
 
-#Design
+# Design
 
 The design is based on a single microservice component containing
 - a Web Service application showing views of the data
@@ -24,23 +24,23 @@ I used the following technologies in the solution:
 - Spring Web
 - Thymeleaf 
 
-#Requirements
+# Requirements
 
 The service requires an existing MongoDB server version 3.4 or above to be available where the data
  will be stored. Once started and connected, the service will create a database **`test`** containing
  a collection **`movies`** with the sample data.
 
-#Building
+# Building
 
-#####NOTE: All commands shown are run from the project root directory.
+##### NOTE: All commands shown are run from the project root directory.
 
-####Compile and Test
+#### Compile and Test
 >`mvn clean test`
 
-####Build JAR moviedb-0.0.1-SNAPSHOT.jar
+#### Build JAR moviedb-0.0.1-SNAPSHOT.jar
 >`mvn verify`
 
-####Unit Test Coverage Report
+#### Unit Test Coverage Report
 After running the Maven compile and test step above, the test coverage report is located in
 
 > `target/site/jacoco/index.html`
@@ -50,13 +50,13 @@ and is viewable in a web browser.
 ![coverage report](/screenshots/screenshot0006.png) 
 
 
-#Running 
+# Running 
 
-####With Maven
+#### With Maven
 
 >`mvn spring-boot:run`
 
-####Standalone
+#### Standalone
 
 - Default Web port (8080)
 - Default MongoDB host (localhost)
@@ -72,7 +72,7 @@ and is viewable in a web browser.
  &#8209;Dspring.data.mongodb.port=27000 &#8209;jar
  target/moviedb&#8209;0.0.1&#8209;SNAPSHOT.jar</code>
  
- #Web Application
+ # Web Application
  
  With the service running, wiew the Web application by visiting  
  
@@ -80,53 +80,53 @@ and is viewable in a web browser.
 
 (the default port, see above how to change the service port).
 
-####Index Page
+#### Index Page
 
 ![index page](/screenshots/screenshot0001.png)
 
-####Movies List Page
+#### Movies List Page
 
 ![movies list page](/screenshots/screenshot0002.png)
 
-####Comments Page
+#### Comments Page
 
 ![comments page](/screenshots/screenshot0003.png) 
 
-####Top User Page
+#### Top User Page
 
 ![top user](/screenshots/screenshot0004.png) 
 
-####Top Movie Page
+#### Top Movie Page
 
 ![top movie](/screenshots/screenshot0005.png) 
 
- #RESTful API
+ # RESTful API
  
  Service endpoints are reachable by REST clients, for example POSTMAN, and web browsers. Data is returned in JSON format.
  
  URLs should be prefixed with http://localhost:8080 or equivalent.
  
- ###Service health
+ ### Service health
  
- > ###`/actuator/health`
+ > ### `/actuator/health`
  
  ![health](/screenshots/screenshot0007.png)
  
- ###Movies List
+ ### Movies List
  
- > ###`/api/movies`
+ > ### `/api/movies`
  
  ![movies list](/screenshots/screenshot0008.png)
  
  ####Top User
  
- > ###`/api/top-user`
+ > ### `/api/top-user`
  
  ![top user](/screenshots/screenshot0009.png)
  
   ####Top Movie
   
-  > ###`/api/top-movie`
+  > ### `/api/top-movie`
   
   ![top movie](/screenshots/screenshot0010.png)
    

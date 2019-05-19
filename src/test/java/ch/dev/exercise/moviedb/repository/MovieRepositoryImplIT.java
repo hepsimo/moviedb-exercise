@@ -42,10 +42,9 @@ public class MovieRepositoryImplIT {
 
 
     @Test
-    public void findTopUsersByComments() {
-        final List<TotalCommentsPerUser> topUsers = movieService.findTopUsers();
+    public void findTopUserByComments() {
+        final TotalCommentsPerUser topUser = movieService.findTopUser();
 
-        assertThat(topUsers.size(), is(9));
-        assertThat(topUsers.get(0), is(new TotalCommentsPerUser(4L, "testingPriest")));
+        assertThat(topUser, is(new TotalCommentsPerUser(4L, "testingPriest")));
     }
 }

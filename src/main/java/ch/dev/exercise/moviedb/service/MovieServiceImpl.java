@@ -31,7 +31,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public List<TotalCommentsPerUser> findTopUsers() {
-        return repo.findTopUsersByComments();
+    public TotalCommentsPerUser findTopUser() {
+        return repo.findTopUserByComments();
     }
 }

@@ -83,15 +83,15 @@ public class MovieDbControllerImplTest {
     }
 
     @Test
-    public void topUsersPage() {
-        final List<TotalCommentsPerUser> expected = Collections.singletonList(new TotalCommentsPerUser());
+    public void topUserPage() {
+        final TotalCommentsPerUser expected = new TotalCommentsPerUser();
 
-        when(movieService.findTopUsers()).thenReturn(expected);
+        when(movieService.findTopUser()).thenReturn(expected);
 
-        String uri = testController.topUsersPage(model);
+        String uri = testController.topUserPage(model);
 
-        assertThat(uri, is("top-users"));
-        verify(model).addAttribute("topUsers", expected);
+        assertThat(uri, is("top-user"));
+        verify(model).addAttribute("topUser", expected);
     }
 
 

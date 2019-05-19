@@ -2,27 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
-    <title>Top Users</title>
+    <title>Top User</title>
 
     <link rel="stylesheet" th:href="@{/css/style.css}" />
 </head>
 <body>
-<h2>Top Users</h2>
+<h2>Top User</h2>
 <div>
     <table class="top-users">
-        <tbody th:if="${not #lists.isEmpty(topUsers)}">
+        <tbody th:unless="${topUser == null}">
         <tr>
             <th>></th>
             <th>User</th>
             <th>Comments total</th>
         </tr>
-        <tr th:each="user : ${topUsers}">
             <td></td>
-            <td th:text="${user.user}">user</td>
-            <td th:text="${user.totalComments}">totalComments</td>
+            <td th:text="${topUser.user}">user</td>
+            <td th:text="${topUser.totalComments}">totalComments</td>
         </tr>
         </tbody>
-        <tbody th:if="${#lists.isEmpty(topUsers)}">
+        <tbody th:if="${topUser == null}">
         <tr>
             <td colspan="8">No user comments found</td>
         </tr>

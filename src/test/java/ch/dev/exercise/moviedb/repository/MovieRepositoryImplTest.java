@@ -32,18 +32,19 @@ public class MovieRepositoryImplTest {
     }
 
     @Test
-    public void findTopUsersByComments() {
-        final List<TotalCommentsPerUser> topUserList =
-            Collections.singletonList(new TotalCommentsPerUser(1000L, "superFan"));
+    public void findTopUserByComments() {
+        final TotalCommentsPerUser total = new TotalCommentsPerUser(1000L, "superFan");
+        final List<TotalCommentsPerUser> topUsers =
+            Collections.singletonList(total);
         AggregationResults<TotalCommentsPerUser> expected =
-            new AggregationResults<>(topUserList, new Document());
+            new AggregationResults<>(topUsers, new Document());
 
         when(template
             .aggregate(any(Aggregation.class), eq("movies"), eq(TotalCommentsPerUser.class)))
             .thenReturn(expected);
 
-        final List<TotalCommentsPerUser> topUsers = testRepository.findTopUsersByComments();
+        final TotalCommentsPerUser topUser = testRepository.findTopUserByComments();
 
-        assertThat(topUsers, is(topUserList));
+        assertThat(topUser, is(equalTo(total)));
     }
 }

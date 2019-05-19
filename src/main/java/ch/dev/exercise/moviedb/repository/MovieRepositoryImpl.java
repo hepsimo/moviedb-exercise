@@ -1,11 +1,11 @@
 package ch.dev.exercise.moviedb.repository;
 
+import static org.springframework.data.mongodb.core.aggregation.Aggregation.limit;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.project;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.sortByCount;
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
@@ -20,14 +20,14 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
     }
 
     @Override
-    public List<TotalCommentsPerUser> findTopUsersByComments() {
+    public TotalCommentsPerUser findTopUserByComments() {
         Aggregation aggregation = Aggregation
             .newAggregation(unwind("comments"), sortByCount("comments.user"),
-                project().and("_id").as("user").and("count").as("totalComments"));
+                project().and("_id").as("user").and("count").as("totalComments"), limit(1));
 
         AggregationResults<TotalCommentsPerUser> results =
             template.aggregate(aggregation, "movies", TotalCommentsPerUser.class);
 
-        return results.getMappedResults();
+        return results.getUniqueMappedResult();
     }
 }

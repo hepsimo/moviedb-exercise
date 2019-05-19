@@ -4,5 +4,5 @@ import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
 import java.util.List;
 
 public interface MovieRepositoryCustom {
-    public List<TotalCommentsPerUser> findTopUsersByComments();
+    public TotalCommentsPerUser findTopUserByComments();
 }

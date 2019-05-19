@@ -52,12 +52,12 @@ public class MovieDbControllerImpl implements MovieDbController {
     }
 
     @Override
-    @GetMapping("/top-users")
-    public String topUsersPage(final Model model) {
-        List<TotalCommentsPerUser> topUsers = movieService.findTopUsers();
+    @GetMapping("/top-user")
+    public String topUserPage(final Model model) {
+        TotalCommentsPerUser topUser = movieService.findTopUser();
 
-        model.addAttribute("topUsers", topUsers);
+        model.addAttribute("topUser", topUser);
 
-        return "top-users";
+        return "top-user";
     }
 }

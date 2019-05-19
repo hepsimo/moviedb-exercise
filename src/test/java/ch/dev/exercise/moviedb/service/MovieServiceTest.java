@@ -48,9 +48,9 @@ public class MovieServiceTest {
     }
 
     @Test
-    public void findTopUsers() {
-        testService.findTopUsers();
+    public void findtopUser() {
+        testService.findTopUser();
 
-        verify(repository).findTopUsersByComments();
+        verify(repository).findTopUserByComments();
     }
 }

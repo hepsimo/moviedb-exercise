@@ -1,8 +1,13 @@
 package ch.dev.exercise.moviedb.domain;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.Instant;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import nl.jqno.equalsverifier.Warning;
@@ -63,6 +68,13 @@ public class CommentTest {
     @Test
     public void equalsAndHashCode() {
         EqualsVerifier.forClass(Comment.class).suppress(Warning.NONFINAL_FIELDS).verify();
+    }
+
+    @Test
+    public void jsonRepresentation() throws JsonProcessingException {
+        final String json = new ObjectMapper().writeValueAsString(testComment);
+        assertThat(json, stringContainsInOrder("user", "message", "dateCreated", "like"));
+        assertThat(json, not(containsString("createdAt")));
     }
 
 }

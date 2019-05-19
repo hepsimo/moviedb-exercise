@@ -1,5 +1,6 @@
 package ch.dev.exercise.moviedb.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.Instant;
 import lombok.AllArgsConstructor;
@@ -19,6 +20,7 @@ public final class Comment {
     @JsonProperty("like")
     private int like;
 
+    @JsonIgnore
     public Instant getCreatedAt() {
         return Instant.ofEpochSecond(dateCreated);
     }

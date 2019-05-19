@@ -2,7 +2,10 @@ package ch.dev.exercise.moviedb.domain;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.stringContainsInOrder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Arrays;
 import java.util.List;
 import nl.jqno.equalsverifier.EqualsVerifier;
@@ -88,4 +91,12 @@ public class MovieTest {
                + " Comment(user=hater225, message=Hated it, dateCreated=2, like=1)"
                + "])"));
     }
+
+    @Test
+    public void jsonRepresentation() throws JsonProcessingException {
+        assertThat(new ObjectMapper().writeValueAsString(testMovie),
+            stringContainsInOrder("movie_id", "title", "description", "producer", "available_in_3d",
+                "age_rating", "likes", "comments"));
+    }
+
 }

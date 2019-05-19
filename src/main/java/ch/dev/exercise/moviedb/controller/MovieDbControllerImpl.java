@@ -1,7 +1,9 @@
 package ch.dev.exercise.moviedb.controller;
 
 import ch.dev.exercise.moviedb.domain.Movie;
+import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
 import ch.dev.exercise.moviedb.service.MovieService;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,5 +49,15 @@ public class MovieDbControllerImpl implements MovieDbController {
         model.addAttribute("movie", movie.get());
 
         return "comments";
+    }
+
+    @Override
+    @GetMapping("/top-users")
+    public String topUsersPage(final Model model) {
+        List<TotalCommentsPerUser> topUsers = movieService.findTopUsers();
+
+        model.addAttribute("topUsers", topUsers);
+
+        return "top-users";
     }
 }

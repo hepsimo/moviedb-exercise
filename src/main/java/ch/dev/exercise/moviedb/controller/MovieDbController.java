@@ -13,4 +13,7 @@ public interface MovieDbController {
 
     @GetMapping("/movie/{id}/comments")
     String commentsPage(@PathVariable("id") Long id, Model model);
+
+    @GetMapping("/top-users")
+    String topUsersPage(Model model);
 }

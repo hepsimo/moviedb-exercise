@@ -46,4 +46,11 @@ public class MovieServiceTest {
 
         verify(repository).getByMovieId(3L);
     }
+
+    @Test
+    public void findTopUsers() {
+        testService.findTopUsers();
+
+        verify(repository).findTopUsersByComments();
+    }
 }

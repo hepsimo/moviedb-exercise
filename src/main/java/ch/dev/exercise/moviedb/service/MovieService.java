@@ -12,5 +12,5 @@ public interface MovieService {
 
     Optional<Movie> findById(Long id);
 
-    Iterable<TotalCommentsPerUser> findTopUsers();
+    List<TotalCommentsPerUser> findTopUsers();
 }

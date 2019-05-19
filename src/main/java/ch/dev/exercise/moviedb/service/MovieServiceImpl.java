@@ -31,7 +31,7 @@ public class MovieServiceImpl implements MovieService {
     }
 
     @Override
-    public Iterable<TotalCommentsPerUser> findTopUsers() {
+    public List<TotalCommentsPerUser> findTopUsers() {
         return repo.findTopUsersByComments();
     }
 }

@@ -34,11 +34,6 @@ public class Config {
     }
 
     @Bean
-    public ObjectMapper jsonMapper() {
-        return new ObjectMapper();
-    }
-
-    @Bean
     CommandLineRunner dataInit(MovieService movieService, ObjectMapper jsonMapper) {
         return args -> {
             TypeReference<MoviesWrapper> typeRef = new TypeReference<MoviesWrapper>() {

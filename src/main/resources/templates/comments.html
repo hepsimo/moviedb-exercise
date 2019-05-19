@@ -13,12 +13,14 @@
     <table class="comment">
         <tbody th:if="${not #lists.isEmpty(movie.comments)}">
         <tr>
+            <th/>
             <th>User</th>
             <th>Comment</th>
             <th>At</th>
             <th>Rating</th>
         </tr>
         <tr th:each="comment : *{comments}">
+            <td/>
             <td th:text="${comment.user}">user</td>
             <td th:text="${comment.message}">message</td>
             <td th:text="${#temporals.format(comment.createdAt, 'dd MMM yyyy, HH:mm:ss')}">createdAt</td>

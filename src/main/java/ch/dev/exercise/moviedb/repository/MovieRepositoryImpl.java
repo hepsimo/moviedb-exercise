@@ -5,11 +5,11 @@ import static org.springframework.data.mongodb.core.aggregation.Aggregation.sort
 import static org.springframework.data.mongodb.core.aggregation.Aggregation.unwind;
 
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.aggregation.AggregationResults;
-import org.springframework.data.mongodb.core.aggregation.SortByCountOperation;
 
 public class MovieRepositoryImpl implements MovieRepositoryCustom {
     private MongoTemplate template;
@@ -20,8 +20,7 @@ public class MovieRepositoryImpl implements MovieRepositoryCustom {
     }
 
     @Override
-    public Iterable<TotalCommentsPerUser> findTopUsersByComments() {
-        SortByCountOperation sortByUser = sortByCount("comments.user");
+    public List<TotalCommentsPerUser> findTopUsersByComments() {
         Aggregation aggregation = Aggregation
             .newAggregation(unwind("comments"), sortByCount("comments.user"),
                 project().and("_id").as("user").and("count").as("totalComments"));

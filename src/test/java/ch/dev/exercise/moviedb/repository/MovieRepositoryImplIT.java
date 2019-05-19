@@ -8,6 +8,7 @@ import ch.dev.exercise.moviedb.MoviedbApplication;
 import ch.dev.exercise.moviedb.domain.Movie;
 import ch.dev.exercise.moviedb.domain.TotalCommentsPerUser;
 import ch.dev.exercise.moviedb.service.MovieService;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -42,12 +43,9 @@ public class MovieRepositoryImplIT {
 
     @Test
     public void findTopUsersByComments() {
-        final Iterable<TotalCommentsPerUser> topUsers = movieService.findTopUsers();
+        final List<TotalCommentsPerUser> topUsers = movieService.findTopUsers();
 
-        int i = 1;
-        for (TotalCommentsPerUser user : topUsers) {
-            logger.info("[{}]: {}", i, user);
-
-        }
+        assertThat(topUsers.size(), is(9));
+        assertThat(topUsers.get(0), is(new TotalCommentsPerUser(4L, "testingPriest")));
     }
 }

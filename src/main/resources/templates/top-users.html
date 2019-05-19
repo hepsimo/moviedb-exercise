@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" content="text/html" http-equiv="Content-Type">
+    <title>Top Users</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<h2>Top Users</h2>
+<div>
+    <table class="top-users">
+        <tbody th:if="${not #lists.isEmpty(topUsers)}">
+        <tr>
+            <th>></th>
+            <th>User</th>
+            <th>Comments total</th>
+        </tr>
+        <tr th:each="user : ${topUsers}">
+            <td></td>
+            <td th:text="${user.user}">user</td>
+            <td th:text="${user.totalComments}">totalComments</td>
+        </tr>
+        </tbody>
+        <tbody th:if="${#lists.isEmpty(topUsers)}">
+        <tr>
+            <td colspan="8">No user comments found</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
